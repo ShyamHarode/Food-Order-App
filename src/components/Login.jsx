@@ -46,7 +46,7 @@ const Login = () => {
               </label>
 
               <input
-                // type="email"
+                type="email"
                 name="email"
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -61,9 +61,9 @@ const Login = () => {
               </label>
 
               <input
-                // type="password"
+                type="password"
                 name="password"
-                // minLength="6"
+                minLength="6"
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={(e) => setUser({ ...user, pass: e.target.value })}
               />

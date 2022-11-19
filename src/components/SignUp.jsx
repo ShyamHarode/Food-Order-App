@@ -59,7 +59,7 @@ const SignUp = () => {
                 Email:
               </label>
               <input
-                // type="email"
+                type="email"
                 name="email"
                 required
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -75,11 +75,11 @@ const SignUp = () => {
               </label>
 
               <input
-                // type="password"
+                type="password"
                 name="password"
                 required
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                // minlength="6"
+                minlength="6"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </div>
