@@ -26,7 +26,7 @@ const Navbar = () => {
           {
             login && showCart ? (
               <div class="flex gap-2 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="font-sans mt-2 self-center block lg:inline-block text-white hover:text-gray-700">
+                <div className="font-sans mt-2 self-center block lg:inline-block text-white hover:text-gray-300">
                   <button
                     onClick={() => setShowModal(true)}
                     className="relative flex"
