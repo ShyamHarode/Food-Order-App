@@ -66,7 +66,7 @@ const Menu = () => {
   };
 
   return (
-    <div className="flex m-14 gap-4 flex-wrap ">
+    <div className="flex m-14 gap-6 flex-wrap ">
       {items.map((item, idx) => {
         return (
           <Item

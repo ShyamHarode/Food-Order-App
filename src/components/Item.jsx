@@ -27,19 +27,21 @@ const Item = ({ item, index, add, remove, cart }) => {
   }, [cart, remove]);
 
   return (
-    <div className="w-72 rounded border border-gray overflow-hidden shadow-lg">
-      <img className="w-full h-56" src={`assets/${item.image}`} alt="item" />
-      <div className="px-6 py-4">
-        <div className="font-bold mb-2">{item.name}</div>
-        <p className="text-gray-700 text-base">Price: {item.price}</p>
-        {flag && (
-          <div>
-            <p className="text-gray-700 text-base">Total: {count}</p>
-            <p className="text-gray-700 text-base">Cost (INR) : {cost}</p>
-          </div>
-        )}
+    <div className="w-64  h-96 flex flex-col justify-between rounded border border-gray overflow-hidden shadow-lg">
+      <div>
+        <img className="w-full h-48" src={`assets/${item.image}`} alt="item" />
+        <div className="px-6 py-2">
+          <div className="font-bold mb-2">{item.name}</div>
+          <p className="text-gray-700 text-base">Price: {item.price}</p>
+          {flag && (
+            <div>
+              <p className="text-gray-700 text-base">Total: {count}</p>
+              <p className="text-gray-700 text-base">Cost (INR) : {cost}</p>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="px-6 pt-4 pb-2">
+      <div className="px-6 pt-2 pb-3 ">
         <button
           onClick={() => add(index)}
           className="bg-indigo-800 px-8 py-1 btn m-2 text-center rounded"
