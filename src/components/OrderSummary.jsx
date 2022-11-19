@@ -4,7 +4,8 @@ import { UserContext } from "../App";
 import { Link } from "react-router-dom";
 
 const OrderSummary = ({ add, remove, total }) => {
-  const { cart, showModal, setShowModal } = useContext(UserContext);
+  const { cart, showModal, setShowModal, setShowCart } =
+    useContext(UserContext);
 
   return (
     <>
@@ -43,13 +44,13 @@ const OrderSummary = ({ add, remove, total }) => {
                                 </span>
                                 <div>
                                   <button
-                                    //   onClick={() => remove(index)}
+                                    onClick={() => remove(i.id)}
                                     className="bg-blue-600 p-1 btn m-2"
                                   >
                                     -
                                   </button>
                                   <button
-                                    //   onClick={() => add(index)}
+                                    onClick={() => add(i.id)}
                                     className="bg-rose-600 p-1 btn m-2"
                                   >
                                     +
@@ -72,7 +73,7 @@ const OrderSummary = ({ add, remove, total }) => {
                       <button
                         className="text-white bg-blue-500 active:bg-blue-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                         type="button"
-                        //   onClick={() => setShowModal(false)}
+                        onClick={() => setShowCart(false)}
                       >
                         SAVE AND CHECKOUT
                       </button>

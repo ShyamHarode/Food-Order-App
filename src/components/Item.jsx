@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 
 const Item = ({ item, index, add, remove, cart }) => {
   const [obj, setObj] = useState({});
+  const [count, setCount] = useState(0);
+  const [cost, setCost] = useState(0);
 
   useEffect(() => {
     if (cart.length > 0) {
       for (let i of cart) {
         if (i.name === item.name) {
           setObj(i);
+          setCount(i.qty);
+          setCost(i.price);
         }
       }
     } else {
@@ -21,10 +25,10 @@ const Item = ({ item, index, add, remove, cart }) => {
       <div className="px-6 py-4">
         <div className="font-bold mb-2">{item.name}</div>
         <p className="text-gray-700 text-base">Price: {item.price}</p>
-        {Object.keys(obj).length > 0 && (
+        {obj.qty && (
           <div>
-            <p className="text-gray-700 text-base">Total: {obj.qty}</p>
-            <p className="text-gray-700 text-base">Cost: {obj.price}</p>
+            <p className="text-gray-700 text-base">Total: {count}</p>
+            <p className="text-gray-700 text-base">Cost: {cost}</p>
           </div>
         )}
       </div>

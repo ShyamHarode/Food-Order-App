@@ -22,6 +22,7 @@ const App = () => {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   const data = {
     items,
@@ -35,6 +36,8 @@ const App = () => {
     setCart,
     showModal,
     setShowModal,
+    showCart,
+    setShowCart,
   };
   const getData = async () => {
     const response = await fetch("data/feeds.json");
@@ -56,7 +59,13 @@ const App = () => {
           <Route
             exact
             path="/goto"
-            element={login ? <GoToMenu /> : <Navigate replace to="/" />}
+            element={
+              login ? (
+                <GoToMenu setShowCart={setShowCart} />
+              ) : (
+                <Navigate replace to="/" />
+              )
+            }
           />
           <Route
             exact

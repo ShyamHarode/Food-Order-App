@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Item from "./Item";
 import { useContext } from "react";
 import { UserContext } from "../App";
 import OrderSummary from "./OrderSummary";
 
 const Menu = () => {
-  const { items, cart, setCart, showModal } = useContext(UserContext);
+  const { items, cart, setCart, showModal, setShowCart } =
+    useContext(UserContext);
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const addTotal = () => {
+  useEffect(() => {
+    setShowCart(true);
     let sum = 0;
     for (let item of cart) {
-      sum += item.price;
+      let p = Number(item.price);
+      sum += p;
     }
     setTotalPrice(sum);
-  };
+  }, [cart]);
 
   const addToCart = (idx) => {
     const newItem = {
@@ -40,7 +43,6 @@ const Menu = () => {
       cc.push(newItem);
       setCart(cc);
     }
-    addTotal();
   };
   const removeFromCart = (idx) => {
     const newItem = {
@@ -61,7 +63,6 @@ const Menu = () => {
       const newCart = updateCart.filter((i) => i.qty > 0);
       setCart(newCart);
     }
-    addTotal();
   };
 
   return (

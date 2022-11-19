@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GoToMenu = () => {
+const GoToMenu = ({ setShowCart }) => {
   return (
     <div className="text-center mt-20 ">
       <h1 className="m-3 font-bold text-2xl">Welcome to Food's Kitchen</h1>
