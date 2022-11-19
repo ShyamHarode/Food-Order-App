@@ -5,15 +5,7 @@ import { UserContext } from "../App";
 import OrderSummary from "./OrderSummary";
 
 const Menu = () => {
-  const {
-    items,
-    cart,
-    setCart,
-    currUser,
-    setCurrUser,
-    showModal,
-    setShowModal,
-  } = useContext(UserContext);
+  const { items, cart, setCart, showModal } = useContext(UserContext);
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -86,7 +78,13 @@ const Menu = () => {
           />
         );
       })}
-      {showModal && <OrderSummary add={addToCart} remove={removeFromCart} />}
+      {showModal && (
+        <OrderSummary
+          add={addToCart}
+          remove={removeFromCart}
+          total={totalPrice}
+        />
+      )}
     </div>
   );
 };

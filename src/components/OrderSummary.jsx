@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../App";
 import { Link } from "react-router-dom";
 
-const OrderSummary = ({ add, remove }) => {
+const OrderSummary = ({ add, remove, total }) => {
   const { cart, showModal, setShowModal } = useContext(UserContext);
 
   return (
@@ -60,7 +60,9 @@ const OrderSummary = ({ add, remove }) => {
                           })}
                         </ul>
 
-                        <span class="text-sm text-gray-500">Total:</span>
+                        <span class="text-sm text-gray-500">
+                          Total: {total}
+                        </span>
                       </div>
                     </div>
                   </div>
