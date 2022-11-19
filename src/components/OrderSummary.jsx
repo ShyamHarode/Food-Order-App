@@ -45,13 +45,13 @@ const OrderSummary = ({ add, remove, total }) => {
                                 <div>
                                   <button
                                     onClick={() => remove(i.id)}
-                                    className="bg-blue-600 p-1 btn m-2"
+                                    className="bg-rose-600 p-1 btn m-2"
                                   >
                                     -
                                   </button>
                                   <button
                                     onClick={() => add(i.id)}
-                                    className="bg-rose-600 p-1 btn m-2"
+                                    className=" bg-indigo-800 p-1 btn m-2"
                                   >
                                     +
                                   </button>
@@ -62,7 +62,7 @@ const OrderSummary = ({ add, remove, total }) => {
                         </ul>
 
                         <span class="text-sm text-gray-500">
-                          Total: {total}
+                          Total (INR) : {total}
                         </span>
                       </div>
                     </div>

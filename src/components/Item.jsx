@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 
 const Item = ({ item, index, add, remove, cart }) => {
-  const [obj, setObj] = useState({});
+  const [flag, setFlag] = useState(false);
   const [count, setCount] = useState(0);
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
     if (cart.length > 0) {
-      for (let i of cart) {
+      let f = cart.some((i) => {
         if (i.name === item.name) {
-          setObj(i);
           setCount(i.qty);
           setCost(i.price);
+          return true;
+        } else {
+          return false;
         }
+      });
+      if (f) {
+        setFlag(true);
+      } else {
+        setFlag(false);
       }
     } else {
-      setObj({});
+      setFlag(false);
     }
   }, [cart, remove]);
 
@@ -25,23 +32,27 @@ const Item = ({ item, index, add, remove, cart }) => {
       <div className="px-6 py-4">
         <div className="font-bold mb-2">{item.name}</div>
         <p className="text-gray-700 text-base">Price: {item.price}</p>
-        {obj.qty && (
+        {flag && (
           <div>
             <p className="text-gray-700 text-base">Total: {count}</p>
-            <p className="text-gray-700 text-base">Cost: {cost}</p>
+            <p className="text-gray-700 text-base">Cost (INR) : {cost}</p>
           </div>
         )}
       </div>
-      {console.log(obj)}
       <div className="px-6 pt-4 pb-2">
         <button
+          onClick={() => add(index)}
+          className="bg-indigo-800 px-8 py-1 btn m-2 text-center rounded"
+        >
+          +
+        </button>
+        <button
           onClick={() => remove(index)}
-          className="bg-blue-600 p-1 btn m-2"
+          className={`${
+            flag ? "bg-rose-600" : "bg-gray-300"
+          }  px-8 py-1  btn m-2 rounded text-center`}
         >
           -
-        </button>
-        <button onClick={() => add(index)} className="bg-rose-600 p-1 btn m-2">
-          +
         </button>
       </div>
     </div>
