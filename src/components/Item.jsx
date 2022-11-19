@@ -44,7 +44,7 @@ const Item = ({ item, index, add, remove, cart }) => {
       <div className="px-6 pt-2 pb-3 ">
         <button
           onClick={() => add(index)}
-          className="bg-indigo-800 px-8 py-1 btn m-2 text-center rounded"
+          className="bg-indigo-800  w-11 px-8 py-1 btn m-2 items-center flex-col rounded text-xl"
         >
           +
         </button>
@@ -52,7 +52,7 @@ const Item = ({ item, index, add, remove, cart }) => {
           onClick={() => remove(index)}
           className={`${
             flag ? "bg-rose-600" : "bg-gray-300"
-          }  px-8 py-1  btn m-2 rounded text-center`}
+          }  px-8 py-1  btn m-2 rounded items-center flex-col text-xl`}
         >
           -
         </button>

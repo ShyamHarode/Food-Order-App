@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { userList, setLogin, setCurrUser } = useContext(UserContext);
+  const { userList, setLogin } = useContext(UserContext);
   const [user, setUser] = useState({});
   const [error, setError] = useState(false);
 
@@ -13,16 +13,11 @@ const Login = () => {
   const userAuth = (e) => {
     e.preventDefault();
 
-    let cUser = {};
-    let flag = userList.some((u) => {
-      if (u.email === user.email && u.password === user.pass) {
-        cUser = u;
-        return true;
-      } else return false;
-    });
+    let flag = userList.some(
+      (u) => u.email === user.email && u.password === user.pass
+    );
     if (flag) {
       setLogin(true);
-      setCurrUser(cUser);
       navigate("/goto");
     } else {
       setError(true);
@@ -49,7 +44,10 @@ const Login = () => {
                 type="email"
                 name="email"
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                onChange={(e) => {
+                  setUser({ ...user, email: e.target.value });
+                  setError(false);
+                }}
               />
             </div>
             <div className="flex items-center justify-between">
@@ -65,7 +63,10 @@ const Login = () => {
                 name="password"
                 minLength="6"
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                onChange={(e) => setUser({ ...user, pass: e.target.value })}
+                onChange={(e) => {
+                  setUser({ ...user, pass: e.target.value });
+                  setError(false);
+                }}
               />
             </div>
             <div className="flex justify-center items-center mt-4">

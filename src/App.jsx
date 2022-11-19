@@ -16,9 +16,8 @@ import Thankyou from "./components/Thankyou";
 export const UserContext = createContext(null);
 
 const App = () => {
-  const [userList, setUserList] = useState([{ email: "z", password: "z" }]);
+  const [userList, setUserList] = useState([]);
   const [login, setLogin] = useState(false);
-  const [currUser, setCurrUser] = useState({});
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -30,8 +29,6 @@ const App = () => {
     setLogin,
     userList,
     setUserList,
-    currUser,
-    setCurrUser,
     cart,
     setCart,
     showModal,
