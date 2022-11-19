@@ -1,7 +1,17 @@
 # Food-Order-App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live link](https://food-order-shyam.netlify.app/).
 
 ## About Project
 
+### `Sign Up`
 ### `Login`
+### `Menu`
+### `Order Summary`
+### `Check out`
+
+## Tech Stack Used
+- React JS
+- React Router
+- Context API
+- Tailwind CSS
