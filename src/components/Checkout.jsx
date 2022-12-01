@@ -23,7 +23,7 @@ const Checkout = () => {
       sum += p;
     }
     setTotalPrice(sum);
-  }, [totalPrice]);
+  }, [totalPrice, currUser]);
 
   return (
     <div className=" p-16 bg-gray-300 w-full flex justify-center sm:mt-0">
