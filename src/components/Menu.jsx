@@ -5,20 +5,34 @@ import { UserContext } from "../App";
 import OrderSummary from "./OrderSummary";
 
 const Menu = () => {
-  const { items, cart, setCart, showModal, setShowCart } =
-    useContext(UserContext);
+  const {
+    userList,
+    setUserList,
+    items,
+    showModal,
+    setShowCart,
+    currUser,
+    setCurrUser,
+  } = useContext(UserContext);
 
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     setShowCart(true);
     let sum = 0;
-    for (let item of cart) {
+    for (let item of currUser.userCart) {
       let p = Number(item.price);
       sum += p;
     }
     setTotalPrice(sum);
-  }, [cart]);
+
+    const list = [...userList];
+    list[currUser.id] = currUser;
+
+    setUserList(list);
+
+    // eslint-disable-next-line
+  }, [currUser]);
 
   const addToCart = (idx) => {
     const newItem = {
@@ -27,21 +41,20 @@ const Menu = () => {
       price: items[idx].price,
       qty: 1,
     };
-    let exist = cart.some((i) => i.id === idx);
+    let exist = currUser.userCart.some((i) => i.id === idx);
     if (exist) {
-      const updateCart = cart.map((i) => {
+      const updateCart = currUser.userCart.map((i) => {
         if (i.id === idx) {
           return { ...i, qty: i.qty + 1, price: (i.qty + 1) * newItem.price };
         } else {
           return i;
         }
       });
-      setCart(updateCart);
+      setCurrUser({ ...currUser, userCart: updateCart });
     } else {
-      // setCartItem(newItem);
-      const cc = [...cart];
+      const cc = [...currUser.userCart];
       cc.push(newItem);
-      setCart(cc);
+      setCurrUser({ ...currUser, userCart: cc });
     }
   };
   const removeFromCart = (idx) => {
@@ -51,9 +64,9 @@ const Menu = () => {
       price: items[idx].price,
       qty: 1,
     };
-    let exist = cart.some((i) => i.id === idx);
+    let exist = currUser.userCart.some((i) => i.id === idx);
     if (exist) {
-      const updateCart = cart.map((i) => {
+      const updateCart = currUser.userCart.map((i) => {
         if (i.id === idx) {
           return { ...i, qty: i.qty - 1, price: (i.qty - 1) * newItem.price };
         } else {
@@ -61,31 +74,41 @@ const Menu = () => {
         }
       });
       const newCart = updateCart.filter((i) => i.qty > 0);
-      setCart(newCart);
+
+      setCurrUser({ ...currUser, userCart: newCart });
     }
   };
 
   return (
-    <div className="flex m-14 gap-6 flex-wrap ">
-      {items.map((item, idx) => {
-        return (
-          <Item
-            key={idx}
-            item={item}
-            index={idx}
+    <div
+      className="w-full min-h-screen bg-cover"
+      style={{
+        backgroundImage: `url(${"assets/resto-bg.jpg"})`,
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="flex p-20 justify-center gap-8 flex-wrap  ">
+        {items.map((item, idx) => {
+          return (
+            <Item
+              key={idx}
+              item={item}
+              index={idx}
+              add={addToCart}
+              remove={removeFromCart}
+              cart={currUser.userCart}
+            />
+          );
+        })}
+        {showModal && (
+          <OrderSummary
             add={addToCart}
             remove={removeFromCart}
-            cart={cart}
+            total={totalPrice}
+            cart={currUser.userCart}
           />
-        );
-      })}
-      {showModal && (
-        <OrderSummary
-          add={addToCart}
-          remove={removeFromCart}
-          total={totalPrice}
-        />
-      )}
+        )}
+      </div>
     </div>
   );
 };

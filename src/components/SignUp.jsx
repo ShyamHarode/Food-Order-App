@@ -4,7 +4,8 @@ import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const { userList, setUserList } = useContext(UserContext);
+  const { userList, setUserList, setCurrUser, setLogin } =
+    useContext(UserContext);
 
   const [user, setUser] = useState({});
 
@@ -18,22 +19,27 @@ const SignUp = () => {
       name: user.name,
       email: user.email,
       password: user.password,
+      userCart: [],
     };
 
     const list = [...userList];
     list.push(newUser);
     setUserList(list);
-
-    navigate("/login");
+    setCurrUser(newUser);
+    setLogin(true);
+    navigate("/menu");
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0  border bg-gray-100">
-        <div>
+    <div
+      className="flex items-center h-screen justify-center bg-cover"
+      style={{ backgroundImage: "url(assets/resto-bg1.jpg" }}
+    >
+      <div className="flex flex-col items-center p-3  bg-white rounded-lg">
+        <div className="bg-gray">
           <h3 className="text-4xl font-bold ">SignUp</h3>
         </div>
-        <div className=" px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
+        <div className=" px-6 py-4 mt-6 overflow-hidden sm:max-w-lg sm:rounded-lg">
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="flex items-center justify-between">
               <label
@@ -58,7 +64,7 @@ const SignUp = () => {
                 Email:
               </label>
               <input
-                type="email"
+                // type="email"
                 name="email"
                 required
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -78,7 +84,7 @@ const SignUp = () => {
                 name="password"
                 required
                 className="block w-50 mt-1 border-2 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                minLength="6"
+                // minLength="6"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </div>
@@ -93,7 +99,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default SignUp;

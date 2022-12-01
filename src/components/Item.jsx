@@ -27,21 +27,25 @@ const Item = ({ item, index, add, remove, cart }) => {
   }, [cart, remove]);
 
   return (
-    <div className="w-64  h-96 flex flex-col justify-between rounded border border-gray overflow-hidden shadow-lg">
+    <div className="w-64  h-96 bg-white flex flex-col justify-between rounded-md border border-gray overflow-hidden shadow-lg">
       <div>
-        <img className="w-full h-48" src={`assets/${item.image}`} alt="item" />
-        <div className="px-6 py-2">
+        <img
+          className="w-full h-48 hover:scale-110 hover:duration-200"
+          src={`assets/${item.image}`}
+          alt="item"
+        />
+        <div className="px-6 py-2 ">
           <div className="font-bold mb-2">{item.name}</div>
-          <p className="text-gray-700 text-base">Price: {item.price}</p>
+          <p className="text-gray-700 text-base">Price: ₹ {item.price}</p>
           {flag && (
             <div>
               <p className="text-gray-700 text-base">Total: {count}</p>
-              <p className="text-gray-700 text-base">Cost (INR) : {cost}</p>
+              <p className="text-gray-700 text-base">Cost (INR) : ₹ {cost}</p>
             </div>
           )}
         </div>
       </div>
-      <div className="px-6 pt-2 pb-3 ">
+      <div className="px-6 pb-1 ">
         <button
           onClick={() => add(index)}
           className="bg-indigo-800  w-11 px-8 py-1 btn m-2 items-center flex-col rounded text-xl"

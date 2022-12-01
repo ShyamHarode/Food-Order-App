@@ -10,16 +10,16 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import Menu from "./components/Menu";
-import GoToMenu from "./components/GoToMenu";
 import Thankyou from "./components/Thankyou";
+import Checkout from "./components/Checkout";
 
 export const UserContext = createContext(null);
 
 const App = () => {
   const [userList, setUserList] = useState([]);
+  const [currUser, setCurrUser] = useState({});
   const [login, setLogin] = useState(false);
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
@@ -29,8 +29,8 @@ const App = () => {
     setLogin,
     userList,
     setUserList,
-    cart,
-    setCart,
+    currUser,
+    setCurrUser,
     showModal,
     setShowModal,
     showCart,
@@ -46,33 +46,28 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <UserContext.Provider value={data}>
-        <Navbar />
+   
+      <Router>
+        <UserContext.Provider value={data}>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Login />} />
+            <Route exact path="/signup" element={<SignUp />} />
 
-        <Routes>
-          <Route exact path="/" element={<SignUp />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route
-            exact
-            path="/goto"
-            element={
-              login ? (
-                <GoToMenu setShowCart={setShowCart} />
-              ) : (
-                <Navigate replace to="/" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/menu"
-            element={login ? <Menu /> : <Navigate replace to="/" />}
-          />
-          <Route exact path="/thankyou" element={<Thankyou />} />
-        </Routes>
-      </UserContext.Provider>
-    </Router>
+            <Route
+              exact
+              path="/menu"
+              element={login ? <Menu /> : <Navigate replace to="/" />}
+            />
+            <Route
+              exact
+              path="/checkout"
+              element={login ? <Checkout /> : <Navigate replace to="/" />}
+            />
+            <Route exact path="/thankyou" element={<Thankyou />} />
+          </Routes>
+        </UserContext.Provider>
+      </Router>
   );
 };
 export default App;
