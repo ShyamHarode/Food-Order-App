@@ -27,7 +27,7 @@ const Checkout = () => {
 
   return (
     <div className=" p-16 bg-gray-300 w-full flex justify-center sm:mt-0">
-      <form className="border rounded-lg border-gray-300 bg-white w-m-3/4 p-3 mt-6">
+      <form className="border rounded-lg border-gray-300 bg-white w-m-3/4 p-3 mt-6 shadow-md shadow-black">
         <div className="overflow-hidden sm:rounded-md">
           <h3 className="text-lg text-center font-medium leading-6 text-gray-900 p-2 m-2 sm:px-0">
             Shipping Details
@@ -142,7 +142,7 @@ const Checkout = () => {
 
         <div className="flex justify-between bg-gray-50 px-4 py-3 sm:px-6">
           <span>
-            <b>Total Payment: {totalPrice}</b>
+            <b>Total Payment: ₹ {totalPrice}</b>
           </span>
           <Link to="/thankyou" relative="path">
             <button
