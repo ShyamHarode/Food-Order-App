@@ -24,6 +24,7 @@ const Item = ({ item, index, add, remove, cart }) => {
     } else {
       setFlag(false);
     }
+    // eslint-disable-next-line
   }, [cart, remove]);
 
   return (
