@@ -19,9 +19,9 @@ const OrderSummary = ({ add, remove, total, cart }) => {
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
             <div className="fixed inset-0 z-10 overflow-y-auto sm:my-8 sm:w-full ">
-              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="flex min-h-full items-end justify-center p-2 text-center sm:items-center sm:p-0">
                 <div className="relative m-auto inset-x-0 inset-y-0 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8  sm:w-full sm:max-w-lg">
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="px-2 pt-5 pb-4 sm:p-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                         <h3
@@ -31,7 +31,7 @@ const OrderSummary = ({ add, remove, total, cart }) => {
                           Order Summary
                         </h3>
 
-                        <ul className="mt-2 w-full">
+                        <ul className="mt-2 p-2 w-full rounded-lg">
                           {cart.map((i) => {
                             return (
                               <li
@@ -39,24 +39,24 @@ const OrderSummary = ({ add, remove, total, cart }) => {
                                 className="w-full flex justify-between items-center"
                               >
                                 <span
-                                  className="text-sm text-gray-500"
+                                  className="text-sm text-gray-700"
                                   style={{ width: "15px" }}
                                 >
                                   {i.name}
                                 </span>
-                                <span className=" text-sm text-gray-500">
+                                <span className=" text-sm text-gray-700">
                                   {i.qty}
                                 </span>
                                 <div>
                                   <button
                                     onClick={() => remove(i.id)}
-                                    className="bg-rose-600 p-1 btn m-2"
+                                    className="bg-rose-600 p-1 btn m-2 rounded-md"
                                   >
                                     -
                                   </button>
                                   <button
                                     onClick={() => add(i.id)}
-                                    className=" bg-indigo-800 p-1 btn m-2"
+                                    className=" bg-indigo-800 p-1 btn m-2 rounded-md"
                                   >
                                     +
                                   </button>
