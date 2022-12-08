@@ -16,7 +16,9 @@ import Checkout from "./components/Checkout";
 export const UserContext = createContext(null);
 
 const App = () => {
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState(() => {
+    return JSON.parse(localStorage.getItem("userList")) || [];
+  });
   const [currUser, setCurrUser] = useState({});
   const [login, setLogin] = useState(false);
   const [items, setItems] = useState([]);
@@ -45,29 +47,32 @@ const App = () => {
     getData();
   }, []);
 
-  return (
-   
-      <Router>
-        <UserContext.Provider value={data}>
-          <Navbar />
-          <Routes>
-            <Route exact path="/" element={<Login />} />
-            <Route exact path="/signup" element={<SignUp />} />
+  useEffect(() => {
+    localStorage.setItem("userList", JSON.stringify(userList));
+  }, [userList]);
 
-            <Route
-              exact
-              path="/menu"
-              element={login ? <Menu /> : <Navigate replace to="/" />}
-            />
-            <Route
-              exact
-              path="/checkout"
-              element={login ? <Checkout /> : <Navigate replace to="/" />}
-            />
-            <Route exact path="/thankyou" element={<Thankyou />} />
-          </Routes>
-        </UserContext.Provider>
-      </Router>
+  return (
+    <Router>
+      <UserContext.Provider value={data}>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/signup" element={<SignUp />} />
+
+          <Route
+            exact
+            path="/menu"
+            element={login ? <Menu /> : <Navigate replace to="/" />}
+          />
+          <Route
+            exact
+            path="/checkout"
+            element={login ? <Checkout /> : <Navigate replace to="/" />}
+          />
+          <Route exact path="/thankyou" element={<Thankyou />} />
+        </Routes>
+      </UserContext.Provider>
+    </Router>
   );
 };
 export default App;
